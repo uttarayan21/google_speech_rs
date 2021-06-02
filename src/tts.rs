@@ -1,5 +1,5 @@
-use pyo3::prelude::*;
-use pyo3::types::IntoPyDict;
+use pyo3::{types::PyModule, PyObject, PyResult, Python};
+// use pyo3::types::IntoPyDict;
 #[derive(Debug)]
 pub struct Speech {
     pyobject_speech: PyObject,
@@ -27,7 +27,7 @@ impl Speech {
     }
 
     /// # Safety
-    /// The save function is a wrapper around google_speech.Speech.save
+    /// The save function is a wrapper around google_speech.Speech.save python function
     /// which might be unsafe
     pub unsafe fn save<S: AsRef<str>>(&self, path: S) -> PyResult<()> {
         Python::with_gil(|py| {
