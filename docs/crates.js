@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["cfg_if","ctor","ghost","google_speech","indoc","indoc_impl","instant","inventory","inventory_impl","libc","lock_api","parking_lot","parking_lot_core","paste","paste_impl","proc_macro2","proc_macro_hack","pyo3","pyo3_macros","pyo3_macros_backend","quote","scopeguard","smallvec","syn","unicode_xid","unindent"];
