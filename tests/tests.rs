@@ -8,7 +8,7 @@ fn test_hello_play() {
 #[test]
 fn test_hello_save() {
     let hello = Speech::new("Hello", Lang::en_us).unwrap();
-    unsafe { hello.save("target/hello.mp3").unwrap() };
+    unsafe { hello.save(concat!(env!("OUT_DIR"), "/hello.mp3")).unwrap() };
 }
 
 // #[test]
