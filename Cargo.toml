@@ -2,6 +2,15 @@
 name = "google_speech"
 version = "0.1.0"
 authors = ["Uttarayan Mondal <uttarayan21@gmail.com>"]
+description = "Rust bindings to google_speech python module"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/uttarayan21/google_speech_rs"
+exclude = [
+    ".github/*",
+    "tests",
+]
+
 edition = "2018"
 build = "build.rs"
 
