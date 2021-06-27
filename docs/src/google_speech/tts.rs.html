@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/tts.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tts.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../google_speech/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../google_speech/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -222,7 +222,7 @@
 <span id="219">219</span>
 <span id="220">220</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">pyo3</span>::{<span class="ident">types</span>::<span class="ident">PyModule</span>, <span class="ident">PyObject</span>, <span class="ident">PyResult</span>, <span class="ident">Python</span>};
+<span class="kw">use</span> <span class="ident">pyo3</span>::{<span class="ident">types::PyModule</span>, <span class="ident">PyObject</span>, <span class="ident">PyResult</span>, <span class="ident">Python</span>};
 <span class="comment">// use pyo3::types::IntoPyDict;</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Speech</span> {
@@ -231,8 +231,8 @@
 <span class="kw">impl</span> <span class="ident">Speech</span> {
     <span class="doccomment">/// Create a new speech object with language</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">text</span>: <span class="ident">S</span>, <span class="ident">lang</span>: <span class="ident">Lang</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PyResult</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">Python</span>::<span class="ident">with_gil</span>(<span class="op">|</span><span class="ident">py</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">google_speech</span> <span class="op">=</span> <span class="ident">PyModule</span>::<span class="ident">import</span>(<span class="ident">py</span>, <span class="string">&quot;google_speech&quot;</span>).<span class="ident">unwrap</span>();
+        <span class="ident">Python::with_gil</span>(<span class="op">|</span><span class="ident">py</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="ident">google_speech</span> <span class="op">=</span> <span class="ident">PyModule::import</span>(<span class="ident">py</span>, <span class="string">&quot;google_speech&quot;</span>).<span class="ident">unwrap</span>();
             <span class="kw">let</span> <span class="ident">pyobject_speech</span>: <span class="ident">PyObject</span> <span class="op">=</span> <span class="ident">google_speech</span>
                 .<span class="ident">call1</span>(<span class="string">&quot;Speech&quot;</span>, (<span class="ident">text</span>.<span class="ident">as_ref</span>(), <span class="ident">lang</span>.<span class="ident">to_string</span>()))
                 .<span class="ident">unwrap</span>()
@@ -244,7 +244,7 @@
 
     <span class="doccomment">/// Play the speech object</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">play</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PyResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="ident">Python</span>::<span class="ident">with_gil</span>(<span class="op">|</span><span class="ident">py</span><span class="op">|</span> {
+        <span class="ident">Python::with_gil</span>(<span class="op">|</span><span class="ident">py</span><span class="op">|</span> {
             <span class="self">self</span>.<span class="ident">pyobject_speech</span>.<span class="ident">call_method0</span>(<span class="ident">py</span>, <span class="string">&quot;play&quot;</span>)<span class="question-mark">?</span>;
             <span class="prelude-val">Ok</span>(())
         })
@@ -254,7 +254,7 @@
     <span class="doccomment">/// The save function is a wrapper around google_speech.Speech.save python function</span>
     <span class="doccomment">/// which might be unsafe</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">save</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PyResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="ident">Python</span>::<span class="ident">with_gil</span>(<span class="op">|</span><span class="ident">py</span><span class="op">|</span> {
+        <span class="ident">Python::with_gil</span>(<span class="op">|</span><span class="ident">py</span><span class="op">|</span> {
             <span class="self">self</span>.<span class="ident">pyobject_speech</span>
                 .<span class="ident">call_method1</span>(<span class="ident">py</span>, <span class="string">&quot;save&quot;</span>, (<span class="ident">path</span>.<span class="ident">as_ref</span>(),))<span class="question-mark">?</span>;
             <span class="prelude-val">Ok</span>(())
@@ -363,85 +363,85 @@
 <span class="kw">impl</span> <span class="ident">ToString</span> <span class="kw">for</span> <span class="ident">Lang</span> {
     <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
         <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Lang</span>::<span class="ident">af</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;af&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ar</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ar&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">bn</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;bn&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">bs</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;bs&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ca</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ca&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">cs</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;cs&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">cy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;cy&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">da</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;da&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">de</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;de&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">el</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;el&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_au</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-au&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_ca</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ca&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_gb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-gb&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_gh</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-gh&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_ie</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ie&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_in</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-in&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_ng</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ng&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_nz</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-nz&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_ph</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ph&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_tz</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-tz&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_uk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-uk&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_us</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-us&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">en_za</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-za&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">eo</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;eo&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">es</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;es&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">es_es</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;es-es&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">es_us</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;es-us&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">et</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;et&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">fi</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fi&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">fr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fr&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">fr_ca</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fr-ca&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">fr_fr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fr-fr&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">hi</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hi&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">hr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hr&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">hu</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hu&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">hy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hy&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">id</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;id&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">is</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;is&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">it</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;it&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ja</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ja&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">jw</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;jw&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">km</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;km&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ko</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ko&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">la</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;la&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">lv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;lv&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">mk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;mk&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ml</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ml&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">mr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;mr&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">my</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;my&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ne</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ne&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">nl</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;nl&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">no</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;no&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">pl</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pl&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">pt</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pt&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">pt_br</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pt-br&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">pt_pt</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pt-pt&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ro</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ro&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ru</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ru&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">si</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;si&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">sk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sk&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">sq</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sq&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">sr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sr&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">su</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;su&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">sv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sv&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">sw</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sw&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">ta</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ta&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">te</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;te&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">th</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;th&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">tl</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;tl&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">tr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;tr&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">uk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;uk&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">vi</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;vi&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">zh_cn</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;zh-cn&quot;</span>,
-            <span class="ident">Lang</span>::<span class="ident">zh_tw</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;zh-tw&quot;</span>,
+            <span class="ident">Lang::af</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;af&quot;</span>,
+            <span class="ident">Lang::ar</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ar&quot;</span>,
+            <span class="ident">Lang::bn</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;bn&quot;</span>,
+            <span class="ident">Lang::bs</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;bs&quot;</span>,
+            <span class="ident">Lang::ca</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ca&quot;</span>,
+            <span class="ident">Lang::cs</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;cs&quot;</span>,
+            <span class="ident">Lang::cy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;cy&quot;</span>,
+            <span class="ident">Lang::da</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;da&quot;</span>,
+            <span class="ident">Lang::de</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;de&quot;</span>,
+            <span class="ident">Lang::el</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;el&quot;</span>,
+            <span class="ident">Lang::en</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en&quot;</span>,
+            <span class="ident">Lang::en_au</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-au&quot;</span>,
+            <span class="ident">Lang::en_ca</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ca&quot;</span>,
+            <span class="ident">Lang::en_gb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-gb&quot;</span>,
+            <span class="ident">Lang::en_gh</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-gh&quot;</span>,
+            <span class="ident">Lang::en_ie</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ie&quot;</span>,
+            <span class="ident">Lang::en_in</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-in&quot;</span>,
+            <span class="ident">Lang::en_ng</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ng&quot;</span>,
+            <span class="ident">Lang::en_nz</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-nz&quot;</span>,
+            <span class="ident">Lang::en_ph</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-ph&quot;</span>,
+            <span class="ident">Lang::en_tz</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-tz&quot;</span>,
+            <span class="ident">Lang::en_uk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-uk&quot;</span>,
+            <span class="ident">Lang::en_us</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-us&quot;</span>,
+            <span class="ident">Lang::en_za</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;en-za&quot;</span>,
+            <span class="ident">Lang::eo</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;eo&quot;</span>,
+            <span class="ident">Lang::es</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;es&quot;</span>,
+            <span class="ident">Lang::es_es</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;es-es&quot;</span>,
+            <span class="ident">Lang::es_us</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;es-us&quot;</span>,
+            <span class="ident">Lang::et</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;et&quot;</span>,
+            <span class="ident">Lang::fi</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fi&quot;</span>,
+            <span class="ident">Lang::fr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fr&quot;</span>,
+            <span class="ident">Lang::fr_ca</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fr-ca&quot;</span>,
+            <span class="ident">Lang::fr_fr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;fr-fr&quot;</span>,
+            <span class="ident">Lang::hi</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hi&quot;</span>,
+            <span class="ident">Lang::hr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hr&quot;</span>,
+            <span class="ident">Lang::hu</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hu&quot;</span>,
+            <span class="ident">Lang::hy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;hy&quot;</span>,
+            <span class="ident">Lang::id</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;id&quot;</span>,
+            <span class="ident">Lang::is</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;is&quot;</span>,
+            <span class="ident">Lang::it</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;it&quot;</span>,
+            <span class="ident">Lang::ja</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ja&quot;</span>,
+            <span class="ident">Lang::jw</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;jw&quot;</span>,
+            <span class="ident">Lang::km</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;km&quot;</span>,
+            <span class="ident">Lang::ko</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ko&quot;</span>,
+            <span class="ident">Lang::la</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;la&quot;</span>,
+            <span class="ident">Lang::lv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;lv&quot;</span>,
+            <span class="ident">Lang::mk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;mk&quot;</span>,
+            <span class="ident">Lang::ml</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ml&quot;</span>,
+            <span class="ident">Lang::mr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;mr&quot;</span>,
+            <span class="ident">Lang::my</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;my&quot;</span>,
+            <span class="ident">Lang::ne</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ne&quot;</span>,
+            <span class="ident">Lang::nl</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;nl&quot;</span>,
+            <span class="ident">Lang::no</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;no&quot;</span>,
+            <span class="ident">Lang::pl</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pl&quot;</span>,
+            <span class="ident">Lang::pt</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pt&quot;</span>,
+            <span class="ident">Lang::pt_br</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pt-br&quot;</span>,
+            <span class="ident">Lang::pt_pt</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;pt-pt&quot;</span>,
+            <span class="ident">Lang::ro</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ro&quot;</span>,
+            <span class="ident">Lang::ru</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ru&quot;</span>,
+            <span class="ident">Lang::si</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;si&quot;</span>,
+            <span class="ident">Lang::sk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sk&quot;</span>,
+            <span class="ident">Lang::sq</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sq&quot;</span>,
+            <span class="ident">Lang::sr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sr&quot;</span>,
+            <span class="ident">Lang::su</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;su&quot;</span>,
+            <span class="ident">Lang::sv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sv&quot;</span>,
+            <span class="ident">Lang::sw</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sw&quot;</span>,
+            <span class="ident">Lang::ta</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;ta&quot;</span>,
+            <span class="ident">Lang::te</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;te&quot;</span>,
+            <span class="ident">Lang::th</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;th&quot;</span>,
+            <span class="ident">Lang::tl</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;tl&quot;</span>,
+            <span class="ident">Lang::tr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;tr&quot;</span>,
+            <span class="ident">Lang::uk</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;uk&quot;</span>,
+            <span class="ident">Lang::vi</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;vi&quot;</span>,
+            <span class="ident">Lang::zh_cn</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;zh-cn&quot;</span>,
+            <span class="ident">Lang::zh_tw</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;zh-tw&quot;</span>,
         };
         <span class="ident">ret</span>.<span class="ident">to_string</span>()
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="google_speech" data-search-js="../../search-index.js"></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="google_speech" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
