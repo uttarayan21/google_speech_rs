@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["PyClassInitializer","Initializer for our `#[pyclass]` system."],["PyNativeTypeInitializer","Initializer for Python native type, like `PyDict`."]],"trait":[["PyObjectInit","Initializer for Python types."]]});
+window.SIDEBAR_ITEMS = {"struct":["PyClassInitializer"]};

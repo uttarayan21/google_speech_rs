@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["PyTraverseError",""],["PyVisit","Object visitor for GC."]],"trait":[["PyGCClearProtocol",""],["PyGCProtocol","GC support"],["PyGCTraverseProtocol",""]]});
+window.SIDEBAR_ITEMS = {};

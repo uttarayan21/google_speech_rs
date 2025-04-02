@@ -1,1 +1,1 @@
-initSidebarItems({"attr":[["pyclass",""],["pyfunction",""],["pymethods",""],["pymodule","Internally, this proc macro create a new c function called `PyInit_{my_module}` that then calls the init function you provided"],["pyproto",""]],"derive":[["FromPyObject",""]]});
+window.SIDEBAR_ITEMS = {"attr":["pyclass","pyfunction","pymethods","pymodule"],"derive":["FromPyObject","IntoPyObject","IntoPyObjectRef"]};

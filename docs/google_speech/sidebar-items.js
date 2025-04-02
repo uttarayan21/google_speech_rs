@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["tts",""]]});
+window.SIDEBAR_ITEMS = {"mod":["tts"]};

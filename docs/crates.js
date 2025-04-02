@@ -1,1 +1,2 @@
-window.ALL_CRATES = ["cfg_if","ctor","ghost","google_speech","indoc","indoc_impl","instant","inventory","inventory_impl","libc","lock_api","parking_lot","parking_lot_core","paste","paste_impl","proc_macro2","proc_macro_hack","pyo3","pyo3_macros","pyo3_macros_backend","quote","scopeguard","smallvec","syn","unicode_xid","unindent"];
+window.ALL_CRATES = ["cfg_if","google_speech","heck","indoc","libc","memoffset","once_cell","proc_macro2","pyo3","pyo3_build_config","pyo3_ffi","pyo3_macros","pyo3_macros_backend","quote","syn","target_lexicon","unicode_ident","unindent"];
+//{"start":21,"fragment_lengths":[8,16,7,8,7,12,12,14,7,20,11,14,22,8,6,17,16,11]}

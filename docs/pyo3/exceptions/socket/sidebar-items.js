@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["gaierror",""],["herror",""],["timeout",""]]});
+window.SIDEBAR_ITEMS = {"struct":["gaierror","herror","timeout"]};

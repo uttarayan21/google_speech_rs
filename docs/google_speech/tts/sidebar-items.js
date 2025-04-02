@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Lang",""]],"struct":[["Speech",""]]});
+window.SIDEBAR_ITEMS = {"enum":["Lang"],"struct":["Speech"]};

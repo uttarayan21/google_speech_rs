@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["unindent",""],["unindent_bytes",""]],"trait":[["Unindent",""]]});
+window.SIDEBAR_ITEMS = {"fn":["unindent","unindent_bytes"],"trait":["Unindent"]};

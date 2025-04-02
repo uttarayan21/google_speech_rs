@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["google_speech"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/alloc/string/trait.ToString.html\" title=\"trait alloc::string::ToString\">ToString</a> for <a class=\"enum\" href=\"google_speech/tts/enum.Lang.html\" title=\"enum google_speech::tts::Lang\">Lang</a>","synthetic":false,"types":["google_speech::tts::Lang"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
